@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 import { JSDOM } from "jsdom";
 import iconv from "iconv-lite";
 
-import { requestQueue } from "../utils.mts";
+import { exists, requestQueue } from "../utils.mts";
 
 // textage JS files (c) textage.cc - don't distribute them after downloading!
 
@@ -23,20 +23,6 @@ const textageFiles = [
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const textageDir = path.join(__dirname, "textage");
 console.log(textageDir);
-
-/**
- * Returns whether the given file or directory exists.
- * @param {string} f file or directory path
- * @returns {Promise<boolean>} true if exists, false if not
- */
-async function exists(f) {
-  try {
-    await fs.stat(f);
-    return true;
-  } catch {
-    return false;
-  }
-}
 
 /**
  * Downloads the necessary textage JS files.

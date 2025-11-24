@@ -10,7 +10,7 @@ import { decode as decodeHTML } from "html-entities";
 import { JSDOM } from "jsdom";
 
 import { fakeTextage } from "./scraping/textage.mjs";
-import { writeJsonData } from "./utils.mts";
+import { exists, writeJsonData } from "./utils.mts";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const OUTFILE = "src/songs/iidx.json";
@@ -469,6 +469,11 @@ async function main() {
     const folderName = folderNames[fn[0]];
     const folderNameWidth = measureTextWidth(" " + folderName + " ");
     const folderFile = folderName.replaceAll(" ", "-");
+    const svgPath = path.resolve(path.join(jacketPath, `${folderFile}.svg`));
+
+    // Skip existing jackets
+    if (await exists(svgPath)) continue;
+
     var jacketSpecific = jacketTemplate;
     for (let jp of jacketPaletteEntries.entries()) {
       jacketSpecific = jacketSpecific.replaceAll(
@@ -485,11 +490,7 @@ async function main() {
     for (let jp of Object.entries(otherJacketParameters)) {
       jacketSpecific = jacketSpecific.replaceAll(`{{${jp[0]}}}`, jp[1]);
     }
-    await fs.writeFile(
-      path.resolve(path.join(jacketPath, `${folderFile}.svg`)),
-      jacketSpecific,
-      { encoding: "utf-8" },
-    );
+    await fs.writeFile(svgPath, jacketSpecific, { encoding: "utf-8" });
   }
   console.log(`Successfully built version folder SVG jackets`);
 

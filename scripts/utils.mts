@@ -1,26 +1,40 @@
+import type { PathLike } from "node:fs";
 import { promises, existsSync, mkdirSync } from "node:fs";
-import { resolve, basename, join, dirname } from "path";
-import { format } from "prettier";
-import PQueue from "p-queue";
-import { Jimp, ResizeStrategy } from "jimp";
-import BottomBar from "inquirer/lib/ui/bottom-bar.js";
-import sanitize from "sanitize-filename";
-import { JSDOM } from "jsdom";
-import { fileURLToPath } from "url";
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
+import { globalAgent as httpAgent } from "node:http";
+import { globalAgent as httpsAgent } from "node:https";
+import { resolve, basename, join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 import CacheableLookup from "cacheable-lookup";
-import { globalAgent as httpAgent } from "http";
-import { globalAgent as httpsAgent } from "https";
+import BottomBar from "inquirer/lib/ui/bottom-bar.js";
+import { Jimp, ResizeStrategy } from "jimp";
+import { JSDOM } from "jsdom";
+import PQueue from "p-queue";
+import { format } from "prettier";
+import sanitize from "sanitize-filename";
 
 import type { GameData, Song } from "../src/models/SongData.ts";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 {
   /* globally install dns caching to avoid mass lookups of remywiki over and over */
   const dnsCache = new CacheableLookup();
   dnsCache.install(httpAgent);
   dnsCache.install(httpsAgent);
+}
+
+/**
+ * Returns whether the given file or directory exists.
+ * @param path file or directory path
+ * @returns True if exists, false if not
+ */
+export async function exists(path: PathLike): Promise<boolean> {
+  try {
+    await promises.stat(path);
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 /**
