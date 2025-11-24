@@ -1,10 +1,10 @@
 // @ts-check
+import * as path from "node:path";
+import * as fs from "node:fs";
+import { fileURLToPath } from "node:url";
 import { JSDOM } from "jsdom";
 import iconv from "iconv-lite";
 import { Axios } from "axios";
-import * as path from "path";
-import * as fs from "fs";
-import { fileURLToPath } from "url";
 
 // textage JS files (c) textage.cc - don't distribute them after downloading!
 

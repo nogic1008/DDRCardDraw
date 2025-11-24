@@ -2,14 +2,15 @@
  * Import or update IIDX data from textage.cc.
  */
 
-import { promises as fs } from "fs";
-import * as path from "path";
-import { writeJsonData } from "./utils.mts";
-import { fileURLToPath } from "url";
+import * as fs from "node:fs/promises";
+import * as path from "node:path";
+import { fileURLToPath } from "node:url";
 import { parseStringPromise } from "xml2js";
 import { decode as decodeHTML } from "html-entities";
 import { JSDOM } from "jsdom";
+
 import { fakeTextage } from "./scraping/textage.mjs";
+import { writeJsonData } from "./utils.mts";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const OUTFILE = "src/songs/iidx.json";

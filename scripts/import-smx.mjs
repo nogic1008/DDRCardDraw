@@ -4,9 +4,11 @@
  * Script to import SMX data from direct from statmaniax (thanks cube!)
  */
 
-import { join, resolve, dirname } from "path";
+import { readFile } from "node:fs/promises";
+import { join, resolve, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 import { fetch, Agent, setGlobalDispatcher } from "undici";
-import { readFile } from "fs/promises";
+
 import {
   downloadJacket,
   requestQueue,
@@ -15,7 +17,6 @@ import {
 } from "./utils.mts";
 
 const GET_IMAGES = true;
-import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 

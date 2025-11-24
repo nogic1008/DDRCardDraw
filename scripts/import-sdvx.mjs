@@ -2,11 +2,12 @@
  * Script to import SDVX data from a `music_db.xml` file
  */
 
-import { promises as fs } from "fs";
-import { resolve, join, dirname } from "path";
+import * as fs from "node:fs/promises";
+import { resolve, join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 import { parseStringPromise } from "xml2js";
 import iconv from "iconv-lite";
-import { fileURLToPath } from "url";
+
 import { writeJsonData } from "./utils.mts";
 import { SDVX_UNLOCK_IDS, UNPLAYABLE_IDS } from "./sdvx/unlocks.mjs";
 

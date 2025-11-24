@@ -1,15 +1,16 @@
 // @ts-check
-import * as fs from "fs";
-import * as path from "path";
+import * as fs from "node:fs";
+import * as path from "node:path";
+import { fileURLToPath } from "node:url";
+import bettersqlite from "better-sqlite3";
+
 import {
   downloadJacket,
   requestQueue,
   reportQueueStatusLive,
   writeJsonData,
 } from "./utils.mts";
-import bettersqlite from "better-sqlite3";
 
-import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const flaggableLabels = {

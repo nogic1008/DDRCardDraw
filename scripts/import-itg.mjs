@@ -1,11 +1,12 @@
+import { existsSync, readdirSync } from "node:fs";
+import { resolve, join, basename, extname, dirname } from "node:path";
 import { parsePack } from "simfile-parser";
+
 import {
   writeJsonData,
   downloadJacket,
   unlockRequestConcurrency,
 } from "./utils.mts";
-import { resolve, join, basename, extname, dirname } from "path";
-import { existsSync, readdirSync } from "fs";
 
 unlockRequestConcurrency();
 

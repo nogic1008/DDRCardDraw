@@ -1,8 +1,9 @@
 // @ts-check
-import { readFile } from "fs/promises";
-import * as path from "path";
-import { writeJsonData } from "./utils.mts";
+import { readFile } from "node:fs/promises";
+import * as path from "node:path";
 import pp from "papaparse";
+
+import { writeJsonData } from "./utils.mts";
 
 const targetFile = path.join(
   import.meta.dirname,

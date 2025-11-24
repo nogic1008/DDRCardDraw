@@ -1,6 +1,6 @@
-import { writeFile } from "fs/promises";
-import path from "path";
-import { fileURLToPath } from "url";
+import { writeFile } from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { format } from "prettier";
 
 import { downloadJacket, requestQueue } from "../utils.mts";

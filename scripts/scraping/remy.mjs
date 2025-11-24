@@ -1,7 +1,8 @@
 // @ts-check
 /** @typedef {import("jsdom").JSDOM} JSDOM */
 
-import * as path from "path";
+import * as path from "node:path";
+
 import { downloadJacket, getDom } from "../utils.mts";
 
 /** Will try to return a jacket URL from the wiki page, if found
