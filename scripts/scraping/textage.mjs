@@ -1,10 +1,11 @@
 // @ts-check
+import * as fs from "node:fs/promises";
 import * as path from "node:path";
-import * as fs from "node:fs";
 import { fileURLToPath } from "node:url";
 import { JSDOM } from "jsdom";
 import iconv from "iconv-lite";
-import { Axios } from "axios";
+
+import { requestQueue } from "../utils.mts";
 
 // textage JS files (c) textage.cc - don't distribute them after downloading!
 
@@ -23,27 +24,39 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const textageDir = path.join(__dirname, "textage");
 console.log(textageDir);
 
+/**
+ * Returns whether the given file or directory exists.
+ * @param {string} f file or directory path
+ * @returns {Promise<boolean>} true if exists, false if not
+ */
 async function exists(f) {
   try {
-    await fs.promises.stat(f);
+    await fs.stat(f);
     return true;
   } catch {
     return false;
   }
 }
 
-export async function textageDL(force = false) {
-  const textageScrapeReady = await Promise.all(
-    textageFiles.map((fn) => exists(`${textageDir}/${fn}.js`)),
-  ).then((a) => a.every((v) => v));
+/**
+ * Downloads the necessary textage JS files.
+ * @param {boolean} force Whether to force redownloading even if files exist
+ * @returns {Promise<boolean>} True if download succeeded or files already exist, false otherwise
+ */
+async function textageDL(force = false) {
+  const textageScrapeReady = (
+    await Promise.all(
+      textageFiles.map((fn) => exists(`${textageDir}/${fn}.js`)),
+    )
+  ).every((v) => v);
   if (force || !textageScrapeReady) {
     console.log("Redownloading source JS from textage...");
     // Clear out the existing textage JS, if it exists.
-    if (exists(textageDir)) {
-      await fs.promises.rm(textageDir, { recursive: true, force: true });
+    if (await exists(textageDir)) {
+      await fs.rm(textageDir, { recursive: true, force: true });
     }
     // Redownload all the necessary textage JS.
-    await fs.promises.mkdir(textageDir).catch(() => {});
+    await fs.mkdir(textageDir).catch(() => {});
 
     for (let fn of textageFiles) {
       if (await exists(`${textageDir}/${fn}.js`)) {
@@ -52,32 +65,22 @@ export async function textageDL(force = false) {
       }
       console.log(`Downloading ${fn}...`);
 
-      let req = new Axios({
-        method: "get",
-        url: `https://textage.cc/score/${fn}.js`,
-        responseType: "stream",
+      const url = `https://textage.cc/score/${fn}.js`;
+      const jsText = await requestQueue.add(async () => {
+        const resp = await fetch(url);
+        return iconv.decode(Buffer.from(await resp.arrayBuffer()), "shift-jis");
       });
-      await req
-        .get(`https://textage.cc/score/${fn}.js`)
-        .then(function (response) {
-          const writer = fs.createWriteStream(
-            path.join(textageDir, `${fn}.js`),
-          );
-          response.data
-            .pipe(iconv.decodeStream("shift-jis"))
-            .pipe(iconv.encodeStream("utf-8"))
-            .pipe(writer);
-          return new Promise((resolve, reject) => {
-            writer.on("error", reject);
-            response.data.on("end", resolve);
-          });
-        });
+      await fs.writeFile(path.join(textageDir, `${fn}.js`), jsText, {
+        encoding: "utf-8",
+      });
     }
 
     // Double-check that we got all of the textage JS.
-    const textageScrapeSuccess = textageFiles.every((fn) =>
-      exists(`scraping/textage/${fn}.js`),
-    );
+    const textageScrapeSuccess = (
+      await Promise.all(
+        textageFiles.map((fn) => exists(`scraping/textage/${fn}.js`)),
+      )
+    ).every((v) => v);
     if (!textageScrapeSuccess) {
       console.log(
         `Failed to download textage JS sources. Invoke like 'yarn import:iidx [rescrape]'`,
