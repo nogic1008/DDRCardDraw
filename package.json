@@ -17,7 +17,7 @@
     "import:jubeat": "node scripts/import-jubeat.mjs",
     "import:pump": "node scripts/import-pump.mjs",
     "import:sdvx": "node scripts/import-sdvx.mjs",
-    "import:iidx": "node scripts/import-iidx.mjs",
+    "import:iidx": "node --experimental-strip-types scripts/import-iidx.mts",
     "import:smx": "node scripts/import-smx.mjs",
     "import:itg": "node scripts/import-itg.mjs",
     "import:eventList": "node scripts/event-filter.mjs",
