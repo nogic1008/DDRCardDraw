@@ -1,6 +1,7 @@
-import { downloadJacket, getDom } from "../utils.mts";
-import type { Chart, Song } from "../../src/models/SongData.ts";
 import type { Task } from "tasuku";
+
+import { downloadJacketAsync, getDom } from "../utils.mts";
+import type { Chart, Song } from "../../src/models/SongData.ts";
 
 /** Name & Artist Normalization */
 const normalized: Map<
@@ -32,94 +33,73 @@ type EagateSong = Pick<Song, "name" | "artist" | "saHash" | "charts"> & {
  */
 export class SongImporter {
   #songListUrl: string;
+  #task: Task;
 
-  constructor(songListUrl: string) {
+  constructor(songListUrl: string, task: Task) {
     this.#songListUrl = songListUrl;
+    this.#task = task;
   }
 
-  async fetchSongs(task: Task): Promise<EagateSong[]> {
-    const result = await task(
-      "Fetch from jubeat e-amusement GATE",
-      async ({ setStatus, setOutput }) => {
-        setStatus(`Starting to fetch song data from jubeat e-amusement GATE`);
+  async fetchSongs(): Promise<EagateSong[]> {
+    const result = await this.#task(
+      "Fetch song list from e-amusement GATE",
+      async ({ setError, setOutput, setStatus, setTitle }) => {
+        setStatus(`Fetching`);
 
         const songsPerPage = 50;
         const allSongs: EagateSong[] = [];
-        let currentPage = 0;
-        let emptyPageCount = 0;
-        const maxEmptyPages = 3; // Stop after 3 consecutive empty pages
+        let page = 1; // 1-based page index
+        let retryCount = 0;
+        const maxRetryCount = 3;
 
-        while (emptyPageCount < maxEmptyPages) {
-          const page = currentPage;
-
-          // Construct URL with offset parameter (same strategy as DDR importer)
+        while (retryCount < maxRetryCount) {
+          // Construct URL with page parameter
           const url = new URL(this.#songListUrl);
           url.searchParams.set("page", page.toString());
 
-          setOutput(`Fetching page ${currentPage + 1}... (page=${page})`);
-
           try {
-            const pageSongs = await scrape(url);
+            setStatus(
+              `Fetching Page ${page}/? (retry: ${retryCount}/${maxRetryCount})`,
+            );
+            const pageSongs = await scrape(url, setError);
 
             if (pageSongs.length === 0) {
-              emptyPageCount++;
-              console.log(
-                `Page ${currentPage + 1} is empty (consecutive empty pages: ${emptyPageCount}/${maxEmptyPages})`,
-              );
+              retryCount++;
             } else {
-              emptyPageCount = 0; // Reset counter when songs are found
+              retryCount = 0; // Reset counter when songs are found
               allSongs.push(...pageSongs);
-              setStatus(
-                `Page ${currentPage + 1}: ${pageSongs.length} songs fetched (total: ${allSongs.length} songs)`,
-              );
 
               // If songs fetched is less than songsPerPage, likely the last page
               if (pageSongs.length < songsPerPage) {
-                console.log(
-                  `Songs fetched (${pageSongs.length}) is less than expected (${songsPerPage}), assuming last page`,
-                );
+                setStatus(`Done (Page ${page}/${page})`);
                 break;
               }
             }
           } catch (error) {
-            console.error(
-              `Error occurred while fetching page ${currentPage + 1}:`,
-              error,
-            );
-            emptyPageCount++;
+            retryCount++;
+            setError(error);
           }
-
-          currentPage++;
+          setStatus(
+            `Fetched Page ${page}/? (retry: ${retryCount}/${maxRetryCount})`,
+          );
+          page++;
         }
 
-        // Remove duplicate songs by name+artist
-        const uniqueSongs: EagateSong[] = [];
-        const seen = new Set<string>();
-        for (const song of allSongs) {
-          const key = `${song.name}::${song.artist}`;
-          if (!seen.has(key)) {
-            seen.add(key);
-            uniqueSongs.push(song);
-          }
-        }
-
-        setStatus(
-          `Fetch completed: ${uniqueSongs.length} songs (before deduplication: ${allSongs.length} songs)`,
-        );
-        setOutput(`Pages processed: ${currentPage}`);
-
-        return uniqueSongs;
+        setOutput(`${page} pages processed: ${allSongs.length} songs`);
+        setTitle(`Fetch song list from e-amusement GATE: ${allSongs.length}`);
+        return allSongs;
       },
     );
-
     return result.result;
     /**
      * Scrapes song data from jubeat e-amusement GATE website
      * @param url jubeat song list URL
      */
-    async function scrape(url: URL): Promise<EagateSong[]> {
+    async function scrape(
+      url: URL,
+      setError: (error: unknown) => void,
+    ): Promise<EagateSong[]> {
       const dom = await getDom(url.toString());
-      if (!dom) return [];
 
       const doc = dom.window.document;
       const list = doc.querySelectorAll(
@@ -168,15 +148,15 @@ export class SongImporter {
           }
 
           const charts: EagateSong["charts"] = [];
-          const diffSeq: Chart["diffClass"][] = [
-            "basic",
-            "advanced",
-            "extreme",
+          const diffSeq: Pick<Chart, "style" | "diffClass">[] = [
+            { style: "solo", diffClass: "basic" },
+            { style: "solo", diffClass: "advanced" },
+            { style: "solo", diffClass: "extreme" },
           ];
-          for (const [i, diffClass] of diffSeq.entries()) {
+          for (const [i, chart] of diffSeq.entries()) {
             const lvl = levels[i];
             if (typeof lvl === "number" && !Number.isNaN(lvl)) {
-              charts.push({ style: "solo", diffClass, lvl });
+              charts.push({ ...chart, lvl });
             }
           }
 
@@ -189,7 +169,7 @@ export class SongImporter {
             jacketUrl,
           });
         } catch (e) {
-          console.error("Failed to parse a song entry:", e);
+          setError(e);
         }
       });
 
@@ -208,65 +188,90 @@ export class SongImporter {
    * Merges data from fetchedSong into existingSong
    * @returns True if the merge resulted in any updates
    */
-  merge(existingSong: Song, fetchedSong: EagateSong): boolean {
-    let hasUpdates = false;
-
-    // Update name if different
-    if (existingSong.name !== fetchedSong.name) {
-      console.log(
-        `Updated song name: "${existingSong.name}" -> "${fetchedSong.name}"`,
-      );
-      existingSong.name = fetchedSong.name;
-      hasUpdates = true;
+  async merge(existingSong: Song, fetchedSong: EagateSong): Promise<void> {
+    if (
+      existingSong.name === fetchedSong.name &&
+      existingSong.artist === fetchedSong.artist &&
+      chartsEquals(existingSong.charts, fetchedSong.charts) &&
+      existingSong.jacket
+    ) {
+      return; // No updates needed
     }
 
-    // Update artist if different
-    if (existingSong.artist !== fetchedSong.artist) {
-      console.log(
-        `Updated "${fetchedSong.name}" artist: "${existingSong.artist}" -> "${fetchedSong.artist}"`,
-      );
-      existingSong.artist = fetchedSong.artist;
-      hasUpdates = true;
-    }
+    await this.#task(
+      `${fetchedSong.name} / ${fetchedSong.artist ?? "(No Artist)"}`,
+      async ({ setStatus, task }) => {
+        if (existingSong.name !== fetchedSong.name) {
+          await task(
+            `name: ${existingSong.name} -> ${fetchedSong.name}`,
+            async () => {
+              existingSong.name = fetchedSong.name;
+            },
+          );
+        }
 
-    // Update charts
-    for (const fetchedChart of fetchedSong.charts) {
-      const existingChart = existingSong.charts.find(
-        (chart) =>
-          chart.style === fetchedChart.style &&
-          chart.diffClass === fetchedChart.diffClass,
-      );
+        if (existingSong.artist !== fetchedSong.artist) {
+          await task(
+            `artist: ${existingSong.artist} -> ${fetchedSong.artist}`,
+            async () => {
+              existingSong.artist = fetchedSong.artist;
+            },
+          );
+        }
 
-      if (!existingChart) {
-        console.log(
-          `Added "${fetchedSong.name}": [${fetchedChart.style}/${fetchedChart.diffClass}] (Lv.${fetchedChart.lvl})`,
+        // Update charts
+        for (const fetchedChart of fetchedSong.charts) {
+          const existingChart = existingSong.charts.find(
+            (chart) =>
+              chart.style === fetchedChart.style &&
+              chart.diffClass === fetchedChart.diffClass,
+          );
+
+          if (!existingChart) {
+            await task(
+              `charts: added ${fetchedChart.diffClass.toUpperCase()} (lvl: ${fetchedChart.lvl})`,
+              async () => {
+                existingSong.charts.push({ ...fetchedChart });
+              },
+            );
+            continue;
+          }
+
+          // Update level if different
+          if (existingChart.lvl !== fetchedChart.lvl) {
+            await task(
+              `charts: updated ${fetchedChart.diffClass.toUpperCase()} (lvl: ${existingChart.lvl} -> ${fetchedChart.lvl})`,
+              async () => {
+                existingChart.lvl = fetchedChart.lvl;
+              },
+            );
+          }
+        }
+
+        // Try to get jacket if missing
+        if (!existingSong.jacket) {
+          const jacketFilename = `jubeat/${fetchedSong.saHash}`;
+          await task(`jacket`, async () => {
+            existingSong.jacket = await downloadJacketAsync(
+              fetchedSong.jacketUrl,
+              jacketFilename,
+            );
+          });
+        }
+        setStatus("Updated");
+      },
+    );
+
+    function chartsEquals(left: Chart[], right: Chart[]): boolean {
+      if (left.length !== right.length) return false;
+      return left.every((lChart) => {
+        return right.some(
+          (rChart) =>
+            lChart.style === rChart.style &&
+            lChart.diffClass === rChart.diffClass &&
+            lChart.lvl === rChart.lvl,
         );
-        existingSong.charts.push({ ...fetchedChart });
-        hasUpdates = true;
-        continue;
-      }
-
-      // Update level if different
-      if (existingChart.lvl !== fetchedChart.lvl) {
-        console.log(
-          `Updated "${fetchedSong.name}" [${fetchedChart.style}/${fetchedChart.diffClass}] level: ${existingChart.lvl} -> ${fetchedChart.lvl}`,
-        );
-        existingChart.lvl = fetchedChart.lvl;
-        hasUpdates = true;
-      }
+      });
     }
-
-    // Try to get jacket if missing
-    if (!existingSong.jacket && fetchedSong.jacketUrl) {
-      const jacketFilename = `jubeat/${fetchedSong.saHash}`;
-      const jacket = downloadJacket(fetchedSong.jacketUrl, jacketFilename);
-      if (jacket) {
-        console.log(`Added "${existingSong.name}" jacket: ${jacket}`);
-        existingSong.jacket = jacket;
-        hasUpdates = true;
-      }
-    }
-
-    return hasUpdates;
   }
 }

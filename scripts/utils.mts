@@ -1,5 +1,5 @@
 import { existsSync, mkdirSync } from "node:fs";
-import { stat, writeFile } from "node:fs/promises";
+import { mkdir, stat, writeFile } from "node:fs/promises";
 import { globalAgent as httpAgent } from "node:http";
 import { globalAgent as httpsAgent } from "node:https";
 import { resolve, basename, join, dirname } from "node:path";
@@ -188,6 +188,28 @@ export function downloadJacket(
       });
   }
 
+  return relative;
+}
+
+/**
+ * queues a cover path for download into the imageQueue.
+ * Always skips if file already exists.
+ * Immediately returns the relative path to the jacket where it will be saved
+ * @param coverUrl url of image to fetch
+ * @param localFilename override filename found in url
+ */
+export async function downloadJacketAsync(
+  coverUrl: string,
+  localFilename: string | undefined = undefined,
+): Promise<string> {
+  const { absolute, relative } = getOutputPath(coverUrl, localFilename);
+  if (!(await exists(absolute))) {
+    await mkdir(dirname(absolute), { recursive: true });
+    const img = await requestQueue.add(() => Jimp.read(coverUrl));
+    await img
+      .resize({ w: 128, mode: ResizeStrategy.BILINEAR })
+      .write(absolute, { quality: 80 });
+  }
   return relative;
 }
 
