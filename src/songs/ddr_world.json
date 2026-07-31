@@ -60,7 +60,7 @@
       "copyStrikes"
     ],
     "granularTierResolution": 20,
-    "lastUpdated": 1784770035866
+    "lastUpdated": 1785374696083
   },
   "defaults": {
     "style": "single",
@@ -9421,6 +9421,52 @@
       "genre": "HYPER EUROBEAT",
       "saHash": "iIP09bOq1l1b9b1l011IDIQ6Iill90Io",
       "saIndex": "51"
+    },
+    {
+      "name": "BUCHiAGE 祭 DANCE",
+      "artist": "Dragon_Klub",
+      "saHash": "bIqioQdiOOblbqD0P99P0liodP8i0880",
+      "bpm": "192",
+      "folder": "DanceDanceRevolution World",
+      "charts": [
+        {
+          "style": "single",
+          "diffClass": "beginner",
+          "lvl": 3
+        },
+        {
+          "style": "single",
+          "diffClass": "basic",
+          "lvl": 6
+        },
+        {
+          "style": "single",
+          "diffClass": "difficult",
+          "lvl": 10
+        },
+        {
+          "style": "single",
+          "diffClass": "expert",
+          "lvl": 14
+        },
+        {
+          "style": "double",
+          "diffClass": "basic",
+          "lvl": 6
+        },
+        {
+          "style": "double",
+          "diffClass": "difficult",
+          "lvl": 10
+        },
+        {
+          "style": "double",
+          "diffClass": "expert",
+          "lvl": 14
+        }
+      ],
+      "flags": ["euLocked"],
+      "jacket": "ddr_world/BUCHiAGE 祭 DANCE.jpg"
     },
     {
       "name": "BURNIN' THE FLOOR",
@@ -38331,6 +38377,52 @@
       "saIndex": "476"
     },
     {
+      "name": "Make Mi Make Mi",
+      "artist": "AMAZE",
+      "saHash": "DDDliPobI96dqo89i00qq1qD1qd9db1b",
+      "bpm": "138",
+      "folder": "DanceDanceRevolution World",
+      "charts": [
+        {
+          "style": "single",
+          "diffClass": "beginner",
+          "lvl": 3
+        },
+        {
+          "style": "single",
+          "diffClass": "basic",
+          "lvl": 6
+        },
+        {
+          "style": "single",
+          "diffClass": "difficult",
+          "lvl": 10
+        },
+        {
+          "style": "single",
+          "diffClass": "expert",
+          "lvl": 14
+        },
+        {
+          "style": "double",
+          "diffClass": "basic",
+          "lvl": 6
+        },
+        {
+          "style": "double",
+          "diffClass": "difficult",
+          "lvl": 10
+        },
+        {
+          "style": "double",
+          "diffClass": "expert",
+          "lvl": 14
+        }
+      ],
+      "flags": ["euLocked"],
+      "jacket": "ddr_world/Make Mi Make Mi.jpg"
+    },
+    {
       "name": "Malacca",
       "artist": "nc ft NRG factory",
       "bpm": "140",
@@ -42700,6 +42792,52 @@
       "remyLink": "https://remywiki.com/New_Millennium_Pt.2",
       "saHash": "dlbqIDqQiolDo6qdoQli6OO9lQolP6Iq",
       "flags": ["unlock"]
+    },
+    {
+      "name": "New Nostalgy",
+      "artist": "CHUBAY",
+      "saHash": "0l1q80obiPPD1P0iid6OI188OdD8i1dD",
+      "bpm": "160",
+      "folder": "DanceDanceRevolution World",
+      "charts": [
+        {
+          "style": "single",
+          "diffClass": "beginner",
+          "lvl": 3
+        },
+        {
+          "style": "single",
+          "diffClass": "basic",
+          "lvl": 5
+        },
+        {
+          "style": "single",
+          "diffClass": "difficult",
+          "lvl": 10
+        },
+        {
+          "style": "single",
+          "diffClass": "expert",
+          "lvl": 15
+        },
+        {
+          "style": "double",
+          "diffClass": "basic",
+          "lvl": 5
+        },
+        {
+          "style": "double",
+          "diffClass": "difficult",
+          "lvl": 10
+        },
+        {
+          "style": "double",
+          "diffClass": "expert",
+          "lvl": 15
+        }
+      ],
+      "flags": ["euLocked"],
+      "jacket": "ddr_world/New Nostalgy.jpg"
     },
     {
       "name": "New Rules",
@@ -90052,6 +90190,54 @@
       "genre": "フラメンコデュオ/FLAMENCO DUO",
       "saHash": "P160qOD09PQoOPI6iIOO69qDoqQl1qDQ",
       "saIndex": "847"
+    },
+    {
+      "name": "燭",
+      "name_translation": "Tomoshibi",
+      "artist": "立秋 feat.ちょこ [Noir]",
+      "saHash": "I1ilo0odi6o8QI8Oblo8Dlb0odOb0qoD",
+      "bpm": "55-211",
+      "folder": "DanceDanceRevolution World",
+      "charts": [
+        {
+          "style": "single",
+          "diffClass": "beginner",
+          "lvl": 4
+        },
+        {
+          "style": "single",
+          "diffClass": "basic",
+          "lvl": 7
+        },
+        {
+          "style": "single",
+          "diffClass": "difficult",
+          "lvl": 12
+        },
+        {
+          "style": "single",
+          "diffClass": "expert",
+          "lvl": 15
+        },
+        {
+          "style": "double",
+          "diffClass": "basic",
+          "lvl": 7
+        },
+        {
+          "style": "double",
+          "diffClass": "difficult",
+          "lvl": 12
+        },
+        {
+          "style": "double",
+          "diffClass": "expert",
+          "lvl": 15
+        }
+      ],
+      "flags": ["euLocked"],
+      "jacket": "ddr_world/燭.jpg",
+      "searchHint": "ともしび"
     },
     {
       "name": "爆なな☆てすとロイヤー",
