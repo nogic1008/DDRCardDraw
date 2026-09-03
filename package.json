@@ -57,7 +57,7 @@
     "babel-loader": "10.0.0",
     "better-sqlite3": "^13.0.3",
     "cacheable-lookup": "7.0.0",
-    "canvas": "3.2.0",
+    "canvas": "^4.0.0-rc3",
     "classnames": "2.5.1",
     "copy-webpack-plugin": "^14.0.0",
     "cross-spawn": "7.0.6",
