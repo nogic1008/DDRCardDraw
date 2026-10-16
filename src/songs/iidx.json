@@ -62,7 +62,7 @@
       "Sparkle Shower",
       "ZINRAI"
     ],
-    "lastUpdated": 1791495300000
+    "lastUpdated": 1792102800000
   },
   "defaults": {
     "style": "single",
@@ -94687,6 +94687,12 @@
           "maxScore": 2044
         },
         {
+          "style": "single",
+          "diffClass": "another",
+          "lvl": 12,
+          "maxScore": 3016
+        },
+        {
           "style": "double",
           "diffClass": "normal",
           "lvl": 6,
@@ -94697,13 +94703,19 @@
           "diffClass": "hyper",
           "lvl": 10,
           "maxScore": 2092
+        },
+        {
+          "style": "double",
+          "diffClass": "another",
+          "lvl": 12,
+          "maxScore": 2862
         }
       ],
       "jacket": "iidx/ZINRAI.svg"
     },
     {
       "name": "DEADRABBIT!!",
-      "artist": "Hylen feat.DJ14 (SCRATCHING)",
+      "artist": "Hylen feat. DJ 14 (SCRATCHING)",
       "genre": "DJENTLE ZAAGBREAKSTEP",
       "saHash": "deadrabt",
       "bpm": "132",
@@ -94722,6 +94734,12 @@
           "maxScore": 2084
         },
         {
+          "style": "single",
+          "diffClass": "another",
+          "lvl": 12,
+          "maxScore": 3204
+        },
+        {
           "style": "double",
           "diffClass": "normal",
           "lvl": 6,
@@ -94732,6 +94750,12 @@
           "diffClass": "hyper",
           "lvl": 10,
           "maxScore": 2192
+        },
+        {
+          "style": "double",
+          "diffClass": "another",
+          "lvl": 12,
+          "maxScore": 3204
         }
       ],
       "jacket": "iidx/ZINRAI.svg"
@@ -94757,6 +94781,12 @@
           "maxScore": 2066
         },
         {
+          "style": "single",
+          "diffClass": "another",
+          "lvl": 12,
+          "maxScore": 3286
+        },
+        {
           "style": "double",
           "diffClass": "normal",
           "lvl": 6,
@@ -94767,6 +94797,12 @@
           "diffClass": "hyper",
           "lvl": 10,
           "maxScore": 2082
+        },
+        {
+          "style": "double",
+          "diffClass": "another",
+          "lvl": 12,
+          "maxScore": 3170
         }
       ],
       "jacket": "iidx/ZINRAI.svg"
@@ -94907,7 +94943,7 @@
           "style": "double",
           "diffClass": "another",
           "lvl": 10,
-          "maxScore": 2048
+          "maxScore": 2068
         }
       ],
       "jacket": "iidx/ZINRAI.svg"
@@ -95027,6 +95063,12 @@
           "maxScore": 1876
         },
         {
+          "style": "single",
+          "diffClass": "another",
+          "lvl": 12,
+          "maxScore": 3372
+        },
+        {
           "style": "double",
           "diffClass": "normal",
           "lvl": 5,
@@ -95037,6 +95079,12 @@
           "diffClass": "hyper",
           "lvl": 9,
           "maxScore": 1892
+        },
+        {
+          "style": "double",
+          "diffClass": "another",
+          "lvl": 12,
+          "maxScore": 3016
         }
       ],
       "jacket": "iidx/ZINRAI.svg"
@@ -95327,7 +95375,7 @@
       "name": "TEKNO KEISER",
       "artist": "STEVIE(Trymatic)/Nana Takahashi Prod. by L.E.D.",
       "genre": "DEATH TEKNO",
-      "saHash": "tenkoksr",
+      "saHash": "teknoksr",
       "bpm": "168",
       "folder": "ZINRAI",
       "charts": [
@@ -95344,6 +95392,12 @@
           "maxScore": 2016
         },
         {
+          "style": "single",
+          "diffClass": "another",
+          "lvl": 12,
+          "maxScore": 4020
+        },
+        {
           "style": "double",
           "diffClass": "normal",
           "lvl": 6,
@@ -95354,6 +95408,12 @@
           "diffClass": "hyper",
           "lvl": 10,
           "maxScore": 2388
+        },
+        {
+          "style": "double",
+          "diffClass": "another",
+          "lvl": 12,
+          "maxScore": 4018
         }
       ],
       "jacket": "iidx/ZINRAI.svg"
@@ -95379,6 +95439,12 @@
           "maxScore": 2290
         },
         {
+          "style": "single",
+          "diffClass": "another",
+          "lvl": 12,
+          "maxScore": 3736
+        },
+        {
           "style": "double",
           "diffClass": "normal",
           "lvl": 6,
@@ -95389,6 +95455,12 @@
           "diffClass": "hyper",
           "lvl": 10,
           "maxScore": 2386
+        },
+        {
+          "style": "double",
+          "diffClass": "another",
+          "lvl": 12,
+          "maxScore": 3880
         }
       ],
       "jacket": "iidx/ZINRAI.svg"
@@ -95590,6 +95662,12 @@
           "maxScore": 2028
         },
         {
+          "style": "single",
+          "diffClass": "another",
+          "lvl": 12,
+          "maxScore": 3064
+        },
+        {
           "style": "double",
           "diffClass": "normal",
           "lvl": 6,
@@ -95600,6 +95678,12 @@
           "diffClass": "hyper",
           "lvl": 10,
           "maxScore": 1974
+        },
+        {
+          "style": "double",
+          "diffClass": "another",
+          "lvl": 12,
+          "maxScore": 3276
         }
       ],
       "jacket": "iidx/ZINRAI.svg"
@@ -96131,6 +96215,12 @@
           "maxScore": 1846
         },
         {
+          "style": "single",
+          "diffClass": "another",
+          "lvl": 12,
+          "maxScore": 3002
+        },
+        {
           "style": "double",
           "diffClass": "normal",
           "lvl": 7,
@@ -96141,6 +96231,12 @@
           "diffClass": "hyper",
           "lvl": 10,
           "maxScore": 1868
+        },
+        {
+          "style": "double",
+          "diffClass": "another",
+          "lvl": 12,
+          "maxScore": 3176
         }
       ],
       "jacket": "iidx/ZINRAI.svg"
@@ -96329,6 +96425,147 @@
           "diffClass": "another",
           "lvl": 12,
           "maxScore": 3166
+        }
+      ],
+      "jacket": "iidx/ZINRAI.svg"
+    },
+    {
+      "name": "I'm so Happy (20th Anniv.Mix)",
+      "artist": "Ryu☆",
+      "genre": "HAPPY HARDCORE",
+      "saHash": "im_hpy20",
+      "bpm": "189",
+      "folder": "ZINRAI",
+      "charts": [
+        {
+          "style": "single",
+          "diffClass": "normal",
+          "lvl": 5,
+          "maxScore": 882
+        },
+        {
+          "style": "single",
+          "diffClass": "hyper",
+          "lvl": 8,
+          "maxScore": 1806
+        },
+        {
+          "style": "single",
+          "diffClass": "another",
+          "lvl": 10,
+          "maxScore": 2512
+        },
+        {
+          "style": "double",
+          "diffClass": "normal",
+          "lvl": 5,
+          "maxScore": 870
+        },
+        {
+          "style": "double",
+          "diffClass": "hyper",
+          "lvl": 9,
+          "maxScore": 1862
+        },
+        {
+          "style": "double",
+          "diffClass": "another",
+          "lvl": 11,
+          "maxScore": 2550
+        }
+      ],
+      "jacket": "iidx/ZINRAI.svg"
+    },
+    {
+      "name": "恋する☆宇宙戦争っ!! (恋する★ハードコアRemix)",
+      "artist": "Prim/Remixed by RoughSketch",
+      "genre": "Hi-リミックスコア",
+      "saHash": "_koi_hcr",
+      "bpm": "210",
+      "folder": "ZINRAI",
+      "charts": [
+        {
+          "style": "single",
+          "diffClass": "normal",
+          "lvl": 6,
+          "maxScore": 1308
+        },
+        {
+          "style": "single",
+          "diffClass": "hyper",
+          "lvl": 10,
+          "maxScore": 2520
+        },
+        {
+          "style": "single",
+          "diffClass": "another",
+          "lvl": 12,
+          "maxScore": 3564
+        },
+        {
+          "style": "double",
+          "diffClass": "normal",
+          "lvl": 6,
+          "maxScore": 1342
+        },
+        {
+          "style": "double",
+          "diffClass": "hyper",
+          "lvl": 10,
+          "maxScore": 2514
+        },
+        {
+          "style": "double",
+          "diffClass": "another",
+          "lvl": 12,
+          "maxScore": 3612
+        }
+      ],
+      "jacket": "iidx/ZINRAI.svg"
+    },
+    {
+      "name": "GOLD RUSH (all-or-nothing MIX)",
+      "artist": "DJ YOSHITAKA with beatnation",
+      "genre": "RECKLESS RAVE",
+      "saHash": "gold_all",
+      "bpm": "162",
+      "folder": "ZINRAI",
+      "charts": [
+        {
+          "style": "single",
+          "diffClass": "normal",
+          "lvl": 6,
+          "maxScore": 1174
+        },
+        {
+          "style": "single",
+          "diffClass": "hyper",
+          "lvl": 8,
+          "maxScore": 1586
+        },
+        {
+          "style": "single",
+          "diffClass": "another",
+          "lvl": 10,
+          "maxScore": 2222
+        },
+        {
+          "style": "double",
+          "diffClass": "normal",
+          "lvl": 6,
+          "maxScore": 1126
+        },
+        {
+          "style": "double",
+          "diffClass": "hyper",
+          "lvl": 9,
+          "maxScore": 1760
+        },
+        {
+          "style": "double",
+          "diffClass": "another",
+          "lvl": 11,
+          "maxScore": 2684
         }
       ],
       "jacket": "iidx/ZINRAI.svg"
