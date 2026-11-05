@@ -24,7 +24,12 @@
         "color": "#980053"
       }
     ],
-    "flags": ["hiddenLeggendaria", "tempUnlock", "hellCharge"],
+    "flags": [
+      "hiddenLeggendaria",
+      "tempUnlock",
+      "hellCharge",
+      "makimonoSlasher"
+    ],
     "folders": [
       "1st style",
       "substream",
@@ -85,6 +90,7 @@
       "hiddenLeggendaria": "LEGGENDARIA chart that needs unlock",
       "tempUnlock": "Formerly unlockable (KAC, BPL, etc.)",
       "hellCharge": "HELL-CHARGE",
+      "makimonoSlasher": "MAKIMONO SLASHER",
       "$abbr": {
         "beginner": "[B]",
         "normal": "[N]",
@@ -106,6 +112,7 @@
       "hiddenLeggendaria": "解禁が必要なLEGGENDARIA譜面",
       "tempUnlock": "現在解禁できない楽曲/譜面",
       "hellCharge": "HELL-CHARGE",
+      "makimonoSlasher": "MAKIMONO SLASHER",
       "$abbr": {
         "beginner": "[B]",
         "normal": "[N]",
@@ -96556,6 +96563,226 @@
           "maxScore": 2684
         }
       ],
+      "jacket": "iidx/ZINRAI.svg"
+    },
+    {
+      "name": "Love Destination",
+      "artist": "ハレトキドキ",
+      "genre": "DIGITAL J-POP2",
+      "id": "lovedest",
+      "bpm": "142",
+      "folder": "ZINRAI",
+      "charts": [
+        {
+          "style": "single",
+          "diffClass": "normal",
+          "lvl": 4
+        },
+        {
+          "style": "single",
+          "diffClass": "hyper",
+          "lvl": 7
+        },
+        {
+          "style": "single",
+          "diffClass": "another",
+          "lvl": 9,
+          "maxScore": 1956
+        },
+        {
+          "style": "double",
+          "diffClass": "normal",
+          "lvl": 4
+        },
+        {
+          "style": "double",
+          "diffClass": "hyper",
+          "lvl": 7
+        },
+        {
+          "style": "double",
+          "diffClass": "another",
+          "lvl": 9,
+          "maxScore": 1860
+        }
+      ],
+      "flags": ["makimonoSlasher"],
+      "jacket": "iidx/ZINRAI.svg"
+    },
+    {
+      "name": "HAMSTER",
+      "artist": "DJ RENA",
+      "genre": "JUNGLE, DRUM N BASS",
+      "id": "hamster",
+      "bpm": "180",
+      "folder": "ZINRAI",
+      "charts": [
+        {
+          "style": "single",
+          "diffClass": "normal",
+          "lvl": 6
+        },
+        {
+          "style": "single",
+          "diffClass": "hyper",
+          "lvl": 9
+        },
+        {
+          "style": "single",
+          "diffClass": "another",
+          "lvl": 11,
+          "maxScore": 2730
+        },
+        {
+          "style": "double",
+          "diffClass": "normal",
+          "lvl": 6
+        },
+        {
+          "style": "double",
+          "diffClass": "hyper",
+          "lvl": 9
+        },
+        {
+          "style": "double",
+          "diffClass": "another",
+          "lvl": 11,
+          "maxScore": 2726
+        }
+      ],
+      "flags": ["makimonoSlasher"],
+      "jacket": "iidx/ZINRAI.svg"
+    },
+    {
+      "name": "えびばでわったいむ",
+      "artist": "まろん feat. ななひら",
+      "genre": "和風歌謡硬核音楽",
+      "id": "_ebibade",
+      "bpm": "170",
+      "folder": "ZINRAI",
+      "charts": [
+        {
+          "style": "single",
+          "diffClass": "normal",
+          "lvl": 5
+        },
+        {
+          "style": "single",
+          "diffClass": "hyper",
+          "lvl": 9
+        },
+        {
+          "style": "single",
+          "diffClass": "another",
+          "lvl": 11,
+          "maxScore": 3048
+        },
+        {
+          "style": "double",
+          "diffClass": "normal",
+          "lvl": 5
+        },
+        {
+          "style": "double",
+          "diffClass": "hyper",
+          "lvl": 9
+        },
+        {
+          "style": "double",
+          "diffClass": "another",
+          "lvl": 11,
+          "maxScore": 3066
+        }
+      ],
+      "flags": ["makimonoSlasher"],
+      "jacket": "iidx/ZINRAI.svg"
+    },
+    {
+      "name": "Vairocana",
+      "artist": "五条式改",
+      "genre": "サイバーガガク",
+      "id": "vaircana",
+      "bpm": "145～290",
+      "folder": "ZINRAI",
+      "charts": [
+        {
+          "style": "single",
+          "diffClass": "normal",
+          "lvl": 5
+        },
+        {
+          "style": "single",
+          "diffClass": "hyper",
+          "lvl": 10
+        },
+        {
+          "style": "single",
+          "diffClass": "another",
+          "lvl": 12,
+          "maxScore": 2600
+        },
+        {
+          "style": "double",
+          "diffClass": "normal",
+          "lvl": 5
+        },
+        {
+          "style": "double",
+          "diffClass": "hyper",
+          "lvl": 10
+        },
+        {
+          "style": "double",
+          "diffClass": "another",
+          "lvl": 12,
+          "maxScore": 2572
+        }
+      ],
+      "flags": ["makimonoSlasher"],
+      "jacket": "iidx/ZINRAI.svg"
+    },
+    {
+      "name": "露照陀仏",
+      "artist": "TAN1CHU",
+      "genre": "REIWA ROTTERDAM TECHNO",
+      "id": "_rdabutu",
+      "bpm": "200",
+      "folder": "ZINRAI",
+      "charts": [
+        {
+          "style": "single",
+          "diffClass": "normal",
+          "lvl": 6
+        },
+        {
+          "style": "single",
+          "diffClass": "hyper",
+          "lvl": 10
+        },
+        {
+          "style": "single",
+          "diffClass": "another",
+          "lvl": 12,
+          "maxScore": 4038
+        },
+        {
+          "style": "double",
+          "diffClass": "normal",
+          "lvl": 7
+        },
+        {
+          "style": "double",
+          "diffClass": "hyper",
+          "lvl": 10
+        },
+        {
+          "style": "double",
+          "diffClass": "another",
+          "lvl": 12,
+          "maxScore": 3830
+        }
+      ],
+      "flags": ["makimonoSlasher"],
       "jacket": "iidx/ZINRAI.svg"
     }
   ]

@@ -105,6 +105,7 @@ const eventFlagMap = new Map<string, string[]>([
     "<span style='font-size:6pt'>BEMANI PRO LEAGUE -SEASON 4- </span>Triple Tribe",
     ["tempUnlock"],
   ],
+  ["MAKIMONO SLASHER", ["makimonoSlasher"]],
 ]);
 /** Other unlock songs (not shown on textage) */
 const otherUnlocks = new Map<string, string[]>([
